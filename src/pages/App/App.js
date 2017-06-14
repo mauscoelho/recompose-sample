@@ -1,24 +1,55 @@
 import React from "react";
 import { compose, withState, withHandlers } from "recompose";
 import logo from "./logo.svg";
-import "./App.css";
+
+const styles = {
+  app: {
+    display: "flex",
+    flexDirection: "column"
+  },
+  appHeader: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    padding: 20,
+    backgroundColor: "black",
+    color: "white"
+  },
+  button: {
+    width: 200,
+    height: 30,
+    display: "flex",
+    alignSelf: "center"
+  },
+  appLogo: {
+    animation: "App-logo-spin infinite 20s linear",
+    height: 80,
+    transform: "rotate(0deg)",
+    WebkitTransform: "rotate(360deg)"
+  },
+  appIntro: {
+    fontSize: "large"
+  }
+};
+
+const increment = ({ setCounter, count }) => e => setCounter(++count);
 
 const enhance = compose(
-  withState('counter', 'updateCounter', 0),
+  withState("count", "setCounter", 0),
   withHandlers({
-    increment: ({updateCounter}) => updateCounter(counter => counter +1)
+    increment
   })
-)
+);
 
-function App({counter, increment}) {
+function App({ count, increment }) {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React Counter {counter}</h2>
-        <button onClick={increment}>Increment</button>
+    <div style={styles.app}>
+      <div style={styles.appHeader}>
+        <img src={logo} style={styles.appLogo} className="" alt="logo" />
+        <h2>Welcome to React Counter {count}</h2>
+        <button style={styles.button} onClick={increment}>Increment</button>
       </div>
-      <p className="App-intro">
+      <p style={styles.appIntro}>
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
     </div>

@@ -1,8 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './pages/App/App';
-import registerServiceWorker from './registerServiceWorker';
-import styles from './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./pages/App/App";
+import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App className={styles.app} />, document.getElementById('root'));
+const styles = {
+  app: {
+    display: "flex",
+    flex: 1,
+    margin: 0,
+    padding: 0
+  }
+};
+
+ReactDOM.render(
+  <App style={styles.app} />,
+  document.getElementById("root")
+);
 registerServiceWorker();
