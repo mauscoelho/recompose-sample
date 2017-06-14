@@ -34,7 +34,7 @@ function App({ count, increment, name }) {
         <img src={logo} style={styles.appLogo} className="" alt="logo" />
         <h2>
           <FormattedMessage
-            id="welcome"
+            id="app.welcome"
             defaultMessage={`Welcome {name}, you have {count, number} {count, plural,
                       one {message}
                       other {messages}
