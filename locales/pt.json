@@ -1,0 +1,6 @@
+{
+	"ptWelcome": {
+		"id": "welcome",
+		"defaultMessage": "Welcome {name}, you have {count, number} {count, plural,one{message}other{messages}}"
+	}
+}

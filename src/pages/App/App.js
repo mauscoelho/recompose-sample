@@ -1,5 +1,6 @@
 import React from "react";
-import { compose, withState, withHandlers } from "recompose";
+import { compose, withState, withHandlers, defaultProps } from "recompose";
+import { FormattedMessage } from "react-intl";
 import logo from "./logo.svg";
 
 const styles = {
@@ -23,37 +24,41 @@ const styles = {
   },
   appLogo: {
     animation: "App-logo-spin infinite 20s linear",
-    height: 80,
-    transform: "rotate(0deg)",
-    WebkitTransform: "rotate(360deg)"
-  },
-  appIntro: {
-    fontSize: "large"
-  }
+    height: 80,    
+  },  
 };
 
-const increment = ({ setCounter, count }) => e => setCounter(++count);
-
-const enhance = compose(
-  withState("count", "setCounter", 0),
-  withHandlers({
-    increment
-  })
-);
-
-function App({ count, increment }) {
+function App({ count, increment, name }) {
   return (
     <div style={styles.app}>
       <div style={styles.appHeader}>
         <img src={logo} style={styles.appLogo} className="" alt="logo" />
-        <h2>Welcome to React Counter {count}</h2>
+        <h2>
+          <FormattedMessage
+            id="welcome"
+            defaultMessage={`Welcome {name}, you have {count, number} {count, plural,
+                      one {message}
+                      other {messages}
+                    }`}
+            values={{ name: <b>{name}</b>, count }}
+          />
+        </h2>
         <button style={styles.button} onClick={increment}>Increment</button>
-      </div>
-      <p style={styles.appIntro}>
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+      </div>      
     </div>
   );
 }
+
+const increment = ({ setCounter, count }) => e => setCounter(++count);
+
+const enhance = compose(
+  defaultProps({
+    name: "Mauricio"    
+  }),
+  withState("count", "setCounter", 1),
+  withHandlers({
+    increment
+  })
+);
 
 export default enhance(App);
