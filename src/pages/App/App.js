@@ -22,8 +22,7 @@ const styles = {
     display: "flex",
     alignSelf: "center"
   },
-  appLogo: {
-    animation: "App-logo-spin infinite 20s linear",
+  appLogo: {    
     height: 80,    
   },  
 };
